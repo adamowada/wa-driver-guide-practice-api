@@ -10,7 +10,7 @@ load_dotenv(".env")
 
 # set globals
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_MODEL = "gpt-4o-mini"
+OPENAI_MODEL = "gpt-4o"
 
 
 def generate_questions():
