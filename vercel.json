@@ -1,6 +1,7 @@
 {
   "functions": {
     "api/practice-questions.py": {
+      "runtime": "python3.11",
       "maxDuration": 60
     }
   }

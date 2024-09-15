@@ -1,9 +1,15 @@
-from aiohttp import web
+# from aiohttp import web
+from fastapi import FastAPI
+
 from chatgpt.question_generator import generate_questions
 from database.db_operations import insert_question, insert_answer, get_client
 
 
-async def handler(request):
+app = FastAPI()
+
+
+@app.get("/api/practice-questions")
+async def practice_questions():
 	questions_data = await generate_questions()
 
 	# Initialize the client within the event loop
@@ -24,10 +30,10 @@ async def handler(request):
 			explanation = answer['explanation']
 			await insert_answer(client, question_id, answer_text, is_correct, explanation)
 
-	return web.json_response(questions_data)
+	return questions_data
 
 
-if __name__ == '__main__':
-	app = web.Application()
-	app.router.add_get('/api/practice-questions', handler)
-	web.run_app(app, host='localhost', port=8000)
+# if __name__ == '__main__':
+# 	app = web.Application()
+# 	app.router.add_get('/api/practice-questions', handler)
+# 	web.run_app(app, host='localhost', port=8000)
