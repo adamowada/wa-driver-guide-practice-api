@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/practice-questions.py": {
+      "maxDuration": 60
+    }
+  }
+}
