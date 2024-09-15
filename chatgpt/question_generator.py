@@ -99,4 +99,5 @@ def generate_five_questions():
 
 
 if __name__ == "__main__":
+	print(OPENAI_API_KEY)
 	print(generate_five_questions())
