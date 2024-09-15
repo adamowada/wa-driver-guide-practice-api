@@ -1,12 +1,12 @@
 # api/practice-questions.py
-from chatgpt.question_generator import generate_five_questions
+from chatgpt.question_generator import generate_questions
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        generated_questions = generate_five_questions()
+        generated_questions = generate_questions()
 
         # forming the response
         self.send_response(200)

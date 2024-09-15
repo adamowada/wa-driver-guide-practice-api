@@ -10,16 +10,16 @@ load_dotenv(".env")
 
 # set globals
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_MODEL = "gpt-4o"
+OPENAI_MODEL = "gpt-4o-mini"
 
 
-def generate_five_questions():
+def generate_questions():
 	client = OpenAI(
 		api_key=OPENAI_API_KEY,
 	)
 
 	response = client.chat.completions.create(
-		model="gpt-4o",
+		model=OPENAI_MODEL,
 		messages=[
 			{
 				"role": "system",
@@ -75,18 +75,27 @@ def generate_five_questions():
 					}
 				]
 			},
+			# {
+			# 	"role": "user",
+			# 	"content": [
+			# 		{
+			# 			"type": "text",
+			# 			"text": "Write 5 more multiple choice questions in the same style and format, but this time respond in Mandarin. The question strings, explanation strings, and test strings should all be translated to Mandarin to the best of your expertise and ability."
+			# 		}
+			# 	]
+			# }
 			{
 				"role": "user",
 				"content": [
 					{
 						"type": "text",
-						"text": "Write 5 more multiple choice questions in the same style and format, but this time respond in Mandarin. The question strings, explanation strings, and test strings should all be translated to Mandarin to the best of your expertise and ability."
+						"text": "Write 10 more multiple choice questions in the same style and format."
 					}
 				]
 			}
 		],
 		temperature=1,
-		max_tokens=4095,
+		max_tokens=16384,
 		top_p=1,
 		frequency_penalty=0,
 		presence_penalty=0,
