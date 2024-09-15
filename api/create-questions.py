@@ -35,7 +35,6 @@ async def create_questions():
 			explanation = answer['explanation']
 			await insert_answer(client, question_id, answer_text, is_correct, explanation)
 
-	return json.dumps({
-		"new_questions": questions_data,
-		"previous_questions": previous_questions
-	})
+	await client.close()
+
+	return [questions_data, previous_questions]
