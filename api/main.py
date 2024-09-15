@@ -8,7 +8,7 @@ app = FastAPI()
 
 
 @app.post("/api/create-questions")
-async def generate_questions():
+async def create_questions():
 	questions_data = await generate_questions()
 
 	# Initialize the client within the event loop
