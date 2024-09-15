@@ -18,7 +18,10 @@ OPENAI_MODEL = "gpt-4o-2024-08-06"
 async def generate_questions():
     db_client = await get_client()
 
-    previous_questions = await get_all_questions_and_answers(db_client)
+    try:
+        previous_questions = await get_all_questions_and_answers(db_client)
+    finally:
+        await db_client.close()
 
     if previous_questions["questions"]:
         previous_questions = [
