@@ -1,10 +1,8 @@
-# chatgpt/question_generator.py
 import os
 import json
 
 from dotenv import load_dotenv
 from openai import OpenAI
-import asyncio
 
 
 # load .env
@@ -113,5 +111,4 @@ async def generate_questions():
 
 
 if __name__ == "__main__":
-    print(OPENAI_API_KEY)
     print(generate_questions())

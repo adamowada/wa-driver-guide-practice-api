@@ -1,8 +1,6 @@
-# database/db_operations.py
 import os
 from libsql_client import create_client
 from dotenv import load_dotenv
-import asyncio
 
 
 # Load environment variables
