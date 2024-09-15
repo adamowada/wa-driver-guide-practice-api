@@ -3,7 +3,7 @@ from chatgpt.question_generator import generate_questions
 from database.db_operations import insert_question, insert_answer, get_client
 
 
-async def handle(request):
+async def handler(request):
 	questions_data = await generate_questions()
 
 	# Initialize the client within the event loop
@@ -29,5 +29,5 @@ async def handle(request):
 
 if __name__ == '__main__':
 	app = web.Application()
-	app.router.add_get('/api/practice-questions', handle)
+	app.router.add_get('/api/practice-questions', handler)
 	web.run_app(app, host='localhost', port=8000)
