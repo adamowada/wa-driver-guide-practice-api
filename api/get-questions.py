@@ -9,7 +9,7 @@ app = FastAPI()
 
 
 @app.get("/api/get-questions")
-async def get_questions():
+async def get1_questions():
     client = await get_client()
     questions_data = await get_all_questions_and_answers(client)
     return questions_data
