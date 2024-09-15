@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/*.py": {
+    "api/practice-questions.py": {
       "maxDuration": 60
     }
   }
