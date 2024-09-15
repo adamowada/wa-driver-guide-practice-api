@@ -37,3 +37,9 @@ async def practice_questions():
 # 	app = web.Application()
 # 	app.router.add_get('/api/practice-questions', handler)
 # 	web.run_app(app, host='localhost', port=8000)
+
+@app.get("/api/get-questions")
+async def get_all_questions():
+    client = await get_client()
+    questions_data = await get_all_questions_and_answers(client)
+    return questions_data
