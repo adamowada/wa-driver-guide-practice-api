@@ -15,5 +15,5 @@ async def get_questions():
     try:
         questions_data = await get_all_questions_and_answers(client)
     finally:
-        client.close()
+        await client.close()
     return questions_data
