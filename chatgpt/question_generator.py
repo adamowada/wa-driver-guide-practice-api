@@ -89,7 +89,7 @@ def generate_questions():
 				"content": [
 					{
 						"type": "text",
-						"text": "Write 10 more multiple choice questions in the same style and format."
+						"text": "Write 5 more multiple choice questions in the same style and format."
 					}
 				]
 			}
