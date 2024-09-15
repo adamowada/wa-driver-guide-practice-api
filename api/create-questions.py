@@ -1,5 +1,3 @@
-import json
-
 from fastapi import FastAPI
 
 from chatgpt.question_generator import generate_questions
@@ -37,4 +35,5 @@ async def create_questions():
 
 	await client.close()
 
-	return [questions_data, previous_questions]
+	# return [questions_data, previous_questions]
+	return questions_data
