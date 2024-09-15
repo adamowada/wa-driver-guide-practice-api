@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 
 from chatgpt.question_generator import generate_questions
-from database.db_operations import insert_question, insert_answer, get_client
+from database.db_operations import insert_question, insert_answer, get_client, get_all_questions_and_answers
 
 
 app = FastAPI()
