@@ -1,4 +1,3 @@
-# from aiohttp import web
 from fastapi import FastAPI
 
 from chatgpt.question_generator import generate_questions
@@ -31,9 +30,3 @@ async def practice_questions():
 			await insert_answer(client, question_id, answer_text, is_correct, explanation)
 
 	return questions_data
-
-
-# if __name__ == '__main__':
-# 	app = web.Application()
-# 	app.router.add_get('/api/practice-questions', handler)
-# 	web.run_app(app, host='localhost', port=8000)

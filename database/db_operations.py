@@ -24,6 +24,7 @@ async def insert_question(client, question_text, image_url):
         result = await client.execute(query, params)
         question_id = result.last_insert_rowid
         return question_id
+
     except Exception as e:
         print(f"Error inserting question: {e}")
         return None
@@ -37,5 +38,6 @@ async def insert_answer(client, question_id, answer_text, is_correct, explanatio
         """
         params = (question_id, answer_text, is_correct, explanation)
         await client.execute(query, params)
+
     except Exception as e:
         print(f"Error inserting answer: {e}")
