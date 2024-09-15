@@ -1,4 +1,3 @@
-# from aiohttp import web
 from fastapi import FastAPI
 
 from database.db_operations import get_client, get_all_questions_and_answers
