@@ -26,7 +26,7 @@ async def generate_questions():
                 "content": [
                         {
                             "type": "text",
-                            "text": "You are a practice exam writer for the Washington State Driver Guide."
+                            "text": "You are an exam writer for the Washington State Driver Guide."
                         }
                 ]
             },

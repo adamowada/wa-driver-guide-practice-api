@@ -1,18 +1,19 @@
-# from aiohttp import web
 from fastapi import FastAPI
 
 from chatgpt.question_generator import generate_questions
-from database.db_operations import insert_question, insert_answer, get_client, get_all_questions_and_answers
+from database.db_operations import insert_question, insert_answer, get_client
 
 
 app = FastAPI()
 
 
-@app.get("/api/practice-questions")
-async def practice_questions():
+# Vercel: one function per file
+# route MUST match file name or 404
+# function can be named anything
+@app.post("/api/create-questions")
+async def create_questions():
 	questions_data = await generate_questions()
 
-	# Initialize the client within the event loop
 	client = await get_client()
 
 	# Insert each question and its answers into the database
@@ -31,15 +32,3 @@ async def practice_questions():
 			await insert_answer(client, question_id, answer_text, is_correct, explanation)
 
 	return questions_data
-
-
-# if __name__ == '__main__':
-# 	app = web.Application()
-# 	app.router.add_get('/api/practice-questions', handler)
-# 	web.run_app(app, host='localhost', port=8000)
-
-@app.get("/api/get-questions")
-async def get_all_questions():
-    client = await get_client()
-    questions_data = await get_all_questions_and_answers(client)
-    return questions_data
