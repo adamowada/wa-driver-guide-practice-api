@@ -12,5 +12,8 @@ app = FastAPI()
 @app.get("/api/get-questions")
 async def get_questions():
     client = await get_client()
-    questions_data = await get_all_questions_and_answers(client)
+    try:
+        questions_data = await get_all_questions_and_answers(client)
+    finally:
+        client.close()
     return questions_data

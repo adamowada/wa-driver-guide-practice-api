@@ -1,3 +1,5 @@
+import json
+
 from fastapi import FastAPI
 
 from chatgpt.question_generator import generate_questions
@@ -12,7 +14,9 @@ app = FastAPI()
 # function can be named anything
 @app.post("/api/create-questions")
 async def create_questions():
-	questions_data = await generate_questions()
+	response = await generate_questions()
+	questions_data = response[0]
+	previous_questions = response[1]
 
 	client = await get_client()
 
@@ -31,4 +35,7 @@ async def create_questions():
 			explanation = answer['explanation']
 			await insert_answer(client, question_id, answer_text, is_correct, explanation)
 
-	return questions_data
+	return json.dumps({
+		"new_questions": questions_data,
+		"previous_questions": previous_questions
+	})

@@ -23,6 +23,8 @@ async def generate_questions():
     finally:
         await db_client.close()
 
+    number_of_previous_questions = len(previous_questions["questions"])
+
     if previous_questions["questions"]:
         previous_questions = [
             {
@@ -66,7 +68,8 @@ async def generate_questions():
             }
         ]
 
-    print("this is previous_questions:", previous_questions)
+    print("length of previous_questions is:", len(previous_questions))
+    print("number of inserted questions is:", number_of_previous_questions)
 
     message_base = [
         {
@@ -154,7 +157,7 @@ async def generate_questions():
     # Parse the assistant's response
     response_content = response.choices[0].message.content
     questions_data = json.loads(response_content)
-    return questions_data
+    return questions_data, previous_questions
 
 
 if __name__ == "__main__":
