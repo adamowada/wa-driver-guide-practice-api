@@ -80,7 +80,7 @@ def generate_five_questions():
 				"content": [
 					{
 						"type": "text",
-						"text": "Write 5 more multiple choice questions in the same style and format."
+						"text": "Write 5 more multiple choice questions in the same style and format, but this time respond in Mandarin. The question strings, explanation strings, and test strings should all be translated to Mandarin to the best of your expertise and ability."
 					}
 				]
 			}
