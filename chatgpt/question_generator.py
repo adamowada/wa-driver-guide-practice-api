@@ -23,34 +23,42 @@ async def generate_questions():
     finally:
         await db_client.close()
 
-    number_of_previous_questions = len(previous_questions["questions"])
-
     if previous_questions["questions"]:
+        # extract question strings
+        str_prvious_questions = "Write 10 multiple choice questions based on the provided Washington State Driver Guide document. Each question should have 4 possible answers. If your question references a sign, use the `signs` object. Add as much context as necessary and avoid ambiguity. Try to formulate questions that test facts that are likely to be tested in DOL knowledge exam and are frequently missed by test takers. All of the user facing strings must be translated to the best of your expertise and ability into simplified Chinese. Format your response in json.\n\nHere is a list of previously asked questions:\n\n"
+
+        for question in previous_questions["questions"]:
+            str_prvious_questions += f"- \"{question["question"]}\"\n"
+
+        str_prvious_questions += "\nWhen you are formulating your 10 multiple choice questions, keep in mind that you have already asked these questions before. Come up with new, difficult questions, that test takers are likely to get wrong AND are likely to be on the knowledge exam. Continue to translate all user facing strings into simplified Chinese."
+
+        print("str_prvious_questions is:", str_prvious_questions)
+
         previous_questions = [
+            # {
+            #     "role": "user",
+            #     "content": [
+            #         {
+            #             "type": "text",
+            #             "text": "Write many multiple choice questions based on the provided Washington State Driver Guide document. Each question should have 4 possible answers. If your question references a sign, use the `signs` object. Add as much context as necessary and avoid ambiguity. Try to formulate questions that test facts that are likely to be tested in DOL knowledge exam and are frequently missed by test takers. All of the user facing strings must be translated to the best of your expertise and ability into simplified Chinese. Format your response in json."
+            #         }
+            #     ]
+            # },
+            # {
+            #     "role": "assistant",
+            #     "content": [
+            #             {
+            #                 "type": "text",
+            #                 "text": json.dumps(previous_questions)
+            #             }
+            #     ]
+            # },
             {
                 "role": "user",
                 "content": [
                     {
                         "type": "text",
-                        "text": "Write many multiple choice questions based on the provided Washington State Driver Guide document. Each question should have 4 possible answers. If your question references a sign, use the `signs` object. Add as much context as necessary and avoid ambiguity. Try to formulate questions that test facts that are likely to be tested in DOL knowledge exam and are frequently missed by test takers. All of the user facing strings must be translated to the best of your expertise and ability into simplified Chinese. Format your response in json."
-                    }
-                ]
-            },
-            {
-                "role": "assistant",
-                "content": [
-                        {
-                            "type": "text",
-                            "text": json.dumps(previous_questions)
-                        }
-                ]
-            },
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "text",
-                        "text": "Write 5 multiple choice questions based on the provided Washington State Driver Guide document. Each question should have 4 possible answers. If your question references a sign, use the `signs` object. Add as much context as necessary and avoid ambiguity. Try to formulate questions that test facts that are likely to be tested in DOL knowledge exam and are frequently missed by test takers. All of the user facing strings must be translated to the best of your expertise and ability into simplified Chinese. Format your response in json."
+                        "text": str_prvious_questions
                     }
                 ]
             }
@@ -67,9 +75,6 @@ async def generate_questions():
                 ]
             }
         ]
-
-    # print("length of previous_questions is:", len(previous_questions))
-    # print("number of inserted questions is:", number_of_previous_questions)
 
     message_base = [
         {
