@@ -70,7 +70,7 @@ async def generate_questions():
                 "content": [
                     {
                         "type": "text",
-                        "text": "Write 5 multiple choice questions based on the provided Washington State Driver Guide document. Each question should have 4 possible answers. If your question references a sign, use the `signs` object. Add as much context as necessary and avoid ambiguity. Try to formulate questions that test facts that are likely to be tested in DOL knowledge exam and are frequently missed by test takers. All of the user facing strings must be translated to the best of your expertise and ability into simplified Chinese. Format your response in json."
+                        "text": "Write 10 multiple choice questions based on the provided Washington State Driver Guide document. Each question should have 4 possible answers. If your question references a sign, use the `signs` object. Add as much context as necessary and avoid ambiguity. Try to formulate questions that test facts that are likely to be tested in DOL knowledge exam and are frequently missed by test takers. All of the user facing strings must be translated to the best of your expertise and ability into simplified Chinese. Format your response in json."
                     }
                 ]
             }
