@@ -348,7 +348,7 @@ Respond with only valid JSON, without any extra text, disclaimers, or code fence
     response_content = response.choices[0].message.content
     questions_data = json.loads(response_content)
     print("The deserialized data is:", questions_data)
-    return questions_data
+    return questions_data, previous_questions
 
 if __name__ == "__main__":
     asyncio.run(generate_questions())

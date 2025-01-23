@@ -50,6 +50,10 @@ pip install -r requirements.txt
 
 ### Running the API Locally
 
+TODO: Fix these instructions, current configuration works on Vercel's serverless functions but not locally.
+To run locally there should only be one instance of FastAPI(), using a router, and then run with uvicorn.
+Vercel is weird.
+
 You can start the API server with the following command:
 
 ```bash

@@ -13,6 +13,8 @@ app = FastAPI()
 @app.post("/api/create-questions")
 async def create_questions():
 	questions_data = await generate_questions()
+	previous_questions = questions_data[1]
+	questions_data = questions_data[0]
 
 	client = await get_client()
 
@@ -33,5 +35,4 @@ async def create_questions():
 
 	await client.close()
 
-	# return [questions_data, previous_questions]
-	return questions_data
+	return [questions_data, previous_questions[0]["content"][0]["text"]]
