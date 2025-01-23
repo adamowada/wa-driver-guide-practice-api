@@ -12,7 +12,7 @@ load_dotenv(".env")
 
 # set globals
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_MODEL = "o1-mini"
+OPENAI_MODEL = "gpt-4o"
 
 
 async def generate_questions():
@@ -28,7 +28,7 @@ async def generate_questions():
         str_prvious_questions = "Write 5 multiple choice questions based on the provided Washington State Driver Guide document. Each question must have 4 possible answers. If your question references a sign, you must use the `signs` object. Add as much context as necessary and avoid ambiguity. Try to formulate questions that test facts that are likely to be tested in DOL knowledge exam and are frequently missed by test takers. Make the questions challenging and specific. Format your response in json.\n\nHere is a list of previously asked questions:\n\n"
 
         for question in previous_questions["questions"]:
-            str_prvious_questions += f"- \"{question["question"]}\"\n"
+            str_prvious_questions += f'- {question["question"]}\n'
 
         str_prvious_questions += "\nWhen you are formulating your 5 multiple choice questions, keep in mind that you have already asked these questions before. Come up with new, difficult questions, that test takers are likely to get wrong AND are likely to be on the knowledge exam."
 
@@ -64,7 +64,7 @@ async def generate_questions():
             "content": [
                     {
                         "type": "text",
-                        "text": "You are an exam writer for the Washington State Driver Guide. You are extremely knowledgeable on Washington driving laws, and enjoy testing specific details that drivers often forget. You write well written questions. You avoid ambiguous questions and answers. You don't write questions that are obvious, and instead write questions that require thoughtful problem solving. You excel at describing common driving scenarios that test esoteric driving laws. You never include answers that are obviously wrong, and instead write incorrect answers as plausibly as possible. Above all else, your core directive is a need to teach and prepare new drivers for their official driving exam."
+                        "text": "You are an exam writer for the Washington State Driver Guide. You are extremely knowledgeable on Washington driving laws, and enjoy testing specific details that drivers often forget. Write well written questions. Include scenarios that require critical thinking. Never include incorrect options that are obviously wrong and easy to eliminate. Write incorrect options as plausibly as possible. Above all else, your core directive is a need to teach and prepare new drivers for their official driving exam which will include challenging questions."
                     }
             ]
         },
@@ -123,7 +123,7 @@ async def generate_questions():
         model=OPENAI_MODEL,
         messages=message_base + previous_questions,
         temperature=1,
-        max_tokens=65_536,
+        max_completion_tokens=16_384,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,
