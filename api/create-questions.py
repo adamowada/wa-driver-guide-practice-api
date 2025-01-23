@@ -19,7 +19,7 @@ async def create_questions():
 	# Insert each question and its answers into the database
 	for question in questions_data['questions']:
 		question_text = question['question']
-		image_url = question['image_url']
+		image_url = question.get('image_url', None)
 
 		# Insert question into the database
 		question_id = await insert_question(client, question_text, image_url)
