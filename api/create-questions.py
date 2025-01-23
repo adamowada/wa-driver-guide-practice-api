@@ -12,9 +12,7 @@ app = FastAPI()
 # function can be named anything
 @app.post("/api/create-questions")
 async def create_questions():
-	response = await generate_questions()
-	questions_data = response[0]
-	previous_questions = response[1]
+	questions_data = await generate_questions()
 
 	client = await get_client()
 
