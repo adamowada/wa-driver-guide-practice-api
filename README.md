@@ -53,9 +53,7 @@ pip install -r requirements.txt
 You can start the API server with the following command:
 
 ```bash
-uvicorn api.get_questions:app --reload
-# or
-uvicorn api.create_questions:app --reload
+uvicorn api.get-questions:app --reload
 ```
 
 The API will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
