@@ -11,7 +11,7 @@ from resources.drivers_guide import washington_drivers_guide_full
 
 load_dotenv(".env")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_MODEL = "gpt-4o"
+OPENAI_MODEL = "gpt-4.1"
 
 
 async def generate_questions():
